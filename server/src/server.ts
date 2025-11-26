@@ -1,6 +1,7 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express, { Request, Response } from "express";
+import ttsRoutes from "./routes/ttsRoutes";
 
 dotenv.config();
 
@@ -15,6 +16,9 @@ app.use(express.json());
 app.get("/api/health", (req: Request, res: Response) => {
   res.json({ status: "OK", message: "AI Voice Studio API is running" });
 });
+
+// TTS Routes
+app.use("/api/tts", ttsRoutes);
 
 // Start server
 app.listen(PORT, () => {
