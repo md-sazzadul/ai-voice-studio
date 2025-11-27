@@ -1,9 +1,15 @@
 import express from "express";
-import { generateSpeech, getVoices } from "../controllers/ttsController";
+import {
+  generateSpeechElevenLabs,
+  getElevenLabsUserInfo,
+  getElevenLabsVoices,
+} from "../controllers/elevenlabsController";
 
 const router = express.Router();
 
-router.post("/generate", generateSpeech);
-router.get("/voices", getVoices);
+// ElevenLabs routes
+router.post("/elevenlabs/generate", generateSpeechElevenLabs);
+router.get("/elevenlabs/voices", getElevenLabsVoices);
+router.get("/elevenlabs/user", getElevenLabsUserInfo);
 
 export default router;

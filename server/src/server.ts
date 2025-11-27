@@ -1,9 +1,10 @@
-import cors from "cors";
 import dotenv from "dotenv";
-import express, { Request, Response } from "express";
-import ttsRoutes from "./routes/ttsRoutes";
 
 dotenv.config();
+
+import cors from "cors";
+import express, { Request, Response } from "express";
+import ttsRoutes from "./routes/ttsRoutes";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
