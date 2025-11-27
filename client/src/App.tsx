@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Waveform from "./components/Waveform";
 
 function App() {
   const [text, setText] = useState("");
@@ -7,6 +8,7 @@ function App() {
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showWaveform, setShowWaveform] = useState(true);
 
   const handleGenerate = async () => {
     if (!text.trim()) {
@@ -45,6 +47,17 @@ function App() {
       setError(err.message || "Something went wrong");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDownload = () => {
+    if (audioUrl) {
+      const a = document.createElement("a");
+      a.href = audioUrl;
+      a.download = `speech-${Date.now()}.mp3`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
   };
 
@@ -97,13 +110,34 @@ function App() {
 
         {audioUrl && (
           <div className="audio-section">
-            <h3>Generated Audio</h3>
-            <audio controls src={audioUrl} className="audio-player">
-              Your browser does not support the audio element.
-            </audio>
-            <a href={audioUrl} download="speech.mp3" className="download-btn">
-              ⬇️ Download MP3
-            </a>
+            <div className="audio-header">
+              <h3>Generated Audio</h3>
+              <label className="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked={showWaveform}
+                  onChange={(e) => setShowWaveform(e.target.checked)}
+                />
+                <span className="toggle-label">Show Waveform</span>
+              </label>
+            </div>
+
+            {showWaveform ? (
+              <Waveform audioUrl={audioUrl} />
+            ) : (
+              <audio controls src={audioUrl} className="audio-player">
+                Your browser does not support the audio element.
+              </audio>
+            )}
+
+            <div className="action-buttons">
+              <button onClick={handleDownload} className="download-btn">
+                ⬇️ Download MP3
+              </button>
+              <button onClick={() => setAudioUrl(null)} className="clear-btn">
+                🗑️ Clear
+              </button>
+            </div>
           </div>
         )}
       </main>
