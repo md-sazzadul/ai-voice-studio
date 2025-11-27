@@ -158,17 +158,152 @@ select:focus {
   margin-bottom: 20px;
 }
 
-.download-btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background: #4ade80;
+/* Waveform styles */
+.waveform-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.waveform {
+  margin-bottom: 15px;
+}
+
+.waveform-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time-display {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.time-display span {
+  margin: 0 5px;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.control-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  text-decoration: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.audio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.audio-header h3 {
+  margin: 0;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch input[type="checkbox"] {
+  width: 50px;
+  height: 26px;
+  appearance: none;
+  background: #ddd;
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked {
+  background: #667eea;
+}
+
+.toggle-switch input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 2px;
+  transition: left 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked::before {
+  left: 26px;
+}
+
+.toggle-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.download-btn,
+.clear-btn {
+  flex: 1;
+  padding: 12px 30px;
+  border: none;
   border-radius: 8px;
   font-weight: 600;
-  transition: background 0.2s;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.download-btn {
+  background: #4ade80;
+  color: white;
 }
 
 .download-btn:hover {
   background: #22c55e;
+  transform: translateY(-2px);
+}
+
+.clear-btn {
+  background: #f87171;
+  color: white;
+}
+
+.clear-btn:hover {
+  background: #ef4444;
+  transform: translateY(-2px);
 }
